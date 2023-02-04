@@ -28,6 +28,14 @@ export default function todo(){
         setTodos([...todos, todo])
         setTodo({title: '', description: ''})
     }
+    
+    function deleteClicked(index){
+        let modifedTodos = todos.filter((data, todoIndex) => {
+            if(index !== todoIndex)
+                return data;
+        })
+        setTodos(modifedTodos)
+    }
 
     return (
         <div className="flex justify-center flex-col items-center">
@@ -43,9 +51,14 @@ export default function todo(){
                 <ul>
                     {todos.map((todo, index) => {
                         return(
-                            <li className="text-lg pt-5" key={index}>
-                                <div className="font-bold">{index+1}: {todo.title}</div>
-                                <div>{todo.description}</div>
+                            <li className="text-lg pt-5 flex" key={index}>
+                                <div className="grow">
+                                    <div className="font-bold">{index+1}: {todo.title}</div>
+                                    <div>{todo.description}</div>
+                                </div>
+                                <button onClick={() => deleteClicked(index)} className="mt-3 shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+                                    Delete
+                                </button>
                             </li>
                         )
                     })}
