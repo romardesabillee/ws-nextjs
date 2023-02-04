@@ -8,21 +8,20 @@ export default function Home() {
     { title: 'Todo 3', description: 'Todo 2 description'},
   ]
   
-  function todosDisplay(){
-    return todos.map((data, index) => {
-      return(
-        <li key={index}>Title: {data.title} &nbsp; Description: {data.description}</li>
-      )
-    })
-  }
-
   return (
 
     <div>
       <Navbar />
-      <div>Home</div>
       <ul>
-        {todosDisplay()}
+        {todos.map((data, index) => {
+          return(
+            <li className="text-lg font-bold" 
+              key={index}>
+                Title: {data.title} &nbsp; Description: 
+                {data.description}
+            </li>
+          )
+        })}
       </ul>
     </div>
   )
